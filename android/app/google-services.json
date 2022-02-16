@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "431958808076",
+    "project_id": "flash-chart-230a4",
+    "storage_bucket": "flash-chart-230a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:431958808076:android:7a0bf6a4ad218163de4029",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_vscode"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "431958808076-o9abbiieec2f4jjfi0u286ki70e6grdm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-xXhH4Qrgd3yxHiZiWuTmauRdO5eZ--I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "431958808076-o9abbiieec2f4jjfi0u286ki70e6grdm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
