@@ -1,17 +1,21 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_vscode/screens/home/productoverview/productoverview.dart';
+import 'package:flutter_application_vscode/widgets/Counter.dart';
 //import 'package:';
 
 class SingleProduct extends StatelessWidget {
   final String productImage;
   final String productName;
-  final int ProductPrice;
-  //final int productProce;
+  final int productPrice;
   final Function onTap;
+  final String productId;
   const SingleProduct(
-      {required this.productImage,
+      {required this.productId,
+      required this.productImage,
       required this.productName,
-      required this.ProductPrice,
+      required this.productPrice,
       required this.onTap});
 
   @override
@@ -37,7 +41,7 @@ class SingleProduct extends StatelessWidget {
                       builder: (context) => productOverview(
                         productImage: productImage,
                         productName: productName,
-                        ProductPrice: ProductPrice,
+                        ProductPrice: productPrice,
                       ),
                     ));
                   },
@@ -57,9 +61,16 @@ class SingleProduct extends StatelessWidget {
                             color: Colors.black, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        "\RS$ProductPrice",
+                        "\RS$productPrice",
                         style: TextStyle(color: Colors.grey),
                       ),
+                      // TextButton(onPressed: () {}, child: Text("ADD")),
+                      Counter(
+                          productName: productName,
+                          //productUnit: productUnit,
+                          productId: productId,
+                          productImage: productImage,
+                          productPrice: productPrice)
                     ],
                   ),
                 ),

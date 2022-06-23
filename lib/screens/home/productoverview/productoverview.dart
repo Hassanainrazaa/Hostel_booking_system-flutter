@@ -1,4 +1,6 @@
 import 'dart:ui';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_application_vscode/screens/home/booknow.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_vscode/config/color.dart';
@@ -68,7 +70,10 @@ class _productOverviewState extends State<productOverview> {
               color: Colors.white,
               title: "Book now",
               iconData: Icons.access_time_rounded,
-              onTap: () {}),
+              onTap: () {
+                //Navigator.push(context,
+                //  MaterialPageRoute(builder: (context) => booknow()));
+              }),
           bonntonNavigatorBar(
               iconColor: Colors.white,
               backgroundColor: Colors.blue,

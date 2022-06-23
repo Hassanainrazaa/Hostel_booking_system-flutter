@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/state_manager.dart';
 
 class SingleItem extends StatelessWidget {
   //const SingleItem({Key? key}) : super(key: key);
@@ -6,11 +7,17 @@ class SingleItem extends StatelessWidget {
   String ProductName;
   String ProductImage;
   int ProductPrice;
+  String productId;
+  int productQuantity;
+  Function onDelete;
   SingleItem(
       {required this.isBool,
       required this.ProductImage,
       required this.ProductName,
-      required this.ProductPrice});
+      required this.ProductPrice,
+      required this.productId,
+      required this.productQuantity,
+      required this.onDelete});
 
   @override
   Widget build(BuildContext context) {
@@ -109,12 +116,14 @@ class SingleItem extends StatelessWidget {
                                         color: Colors.blue,
                                         size: 20,
                                       ),
-                                      Text(
-                                        "Book now",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.blue,
-                                            fontSize: 20),
+                                      GestureDetector(
+                                        child: Text(
+                                          "Book now",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.blue,
+                                              fontSize: 20),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -123,10 +132,13 @@ class SingleItem extends StatelessWidget {
                         : Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
-                              Icon(
-                                Icons.delete,
-                                color: Colors.black,
-                                size: 30,
+                              InkWell(
+                                onTap: () => onDelete(),
+                                child: Icon(
+                                  Icons.delete,
+                                  color: Colors.black,
+                                  size: 30,
+                                ),
                               ),
                               SizedBox(
                                 height: 20,
@@ -149,13 +161,6 @@ class SingleItem extends StatelessWidget {
                                           color: Colors.blue,
                                           size: 20,
                                         ),
-                                        Text(
-                                          "Book now",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.blue,
-                                              fontSize: 20),
-                                        ),
                                       ],
                                     ),
                                   )),
@@ -164,12 +169,6 @@ class SingleItem extends StatelessWidget {
           ],
         ),
       ),
-      isBool == false
-          ? Container()
-          : Divider(
-              height: 0,
-              color: Colors.grey,
-            )
     ]);
   }
 }

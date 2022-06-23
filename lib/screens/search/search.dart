@@ -23,7 +23,7 @@ class _SearchState extends State<Search> {
 
   @override
   Widget build(BuildContext context) {
-    List<ProductModel> _SearchItems = SearchItems("Query");
+    List<ProductModel> _SearchItems = SearchItems(query);
     return Scaffold(
         appBar: AppBar(
           title: Text("Search"),
@@ -46,10 +46,10 @@ class _SearchState extends State<Search> {
             margin: EdgeInsets.symmetric(horizontal: 20),
             child: TextField(
               onChanged: (value) {
-                print(query);
-                //setState(() {
-                //query = value;
-                //});
+                //print(query);
+                setState(() {
+                  query = value;
+                });
               },
               decoration: InputDecoration(
                 border: OutlineInputBorder(
@@ -73,9 +73,14 @@ class _SearchState extends State<Search> {
                 ProductImage: Data.ProductImage,
                 ProductName: Data.ProductName,
                 ProductPrice: Data.productprice,
+                productId: Data.productId,
+                productQuantity: 5,
+                onDelete: () {},
               );
             }).toList(),
           )
         ]));
   }
+
+  onDelete() {}
 }

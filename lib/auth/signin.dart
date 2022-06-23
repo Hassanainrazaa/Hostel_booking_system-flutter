@@ -1,45 +1,46 @@
 //import 'dart:html';
 //import 'package:flutter_signin';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_vscode/provider/userprovider.dart';
 import 'package:flutter_application_vscode/screens/home/home_screen.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 //import 'package:flutter_application_vscode/home/home.dart';
 
-class SignIn extends StatefulWidget {
+class SignIn extends StatelessWidget {
   @override
-  _SignInState createState() => _SignInState();
-}
-
-class _SignInState extends State<SignIn> {
   //UserProvider userProvider;
+  late UserProvider userprovider;
+
+  // ignore: unused_element
   Future<User?> signInWithGoogle() async {
-    // Trigger the authentication flow
     try {
-      final GoogleSignIn _googleSignin = GoogleSignIn(
+      final GoogleSignIn _googleSignIn = GoogleSignIn(
         scopes: ['email'],
       );
       final FirebaseAuth _auth = FirebaseAuth.instance;
 
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser!.authentication;
 
-      // Obtain the auth details from the request
-      final GoogleSignInAuthentication? googleAuth =
-          await googleUser?.authentication;
-
-      // Create a new credential
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
       );
-      final User? user = (await _auth.signInWithCredential(credential)).user;
-      // print("signed in" + user?.displayName);
 
-      // Once signed in, return the UserCredential
-      //return await FirebaseAuth.instance.signInWithCredential(credential);}
+      final User? user = (await _auth.signInWithCredential(credential)).user;
+      // print("signed in " + user.displayName);
+      userprovider.addUserData(
+          currentUser: user!,
+          userEmail: user.email!,
+          userImage: user.photoURL!,
+          userName: user.displayName!);
+
       return user;
     } catch (e) {
       print(e);
@@ -48,15 +49,18 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-    //userProvider = Provider.of<UserProvider>(context);
+    userprovider = Provider.of<UserProvider>(context);
+
     return Scaffold(
       body: Container(
         height: double.infinity,
         width: double.infinity,
         decoration: BoxDecoration(
-          image: DecorationImage(
-              fit: BoxFit.cover, image: AssetImage('assets/background.png')),
-        ),
+            /*image: DecorationImage(
+              fit: BoxFit.cover, 
+              image: AssetImage('')
+              ),*/
+            ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -68,9 +72,10 @@ class _SignInState extends State<SignIn> {
                 children: [
                   Text('Sign in to contunue'),
                   Text(
-                    'Vegi',
+                    'Hostel Booking System',
+                    textAlign: TextAlign.center,
                     style:
-                        TextStyle(fontSize: 50, color: Colors.white, shadows: [
+                        TextStyle(fontSize: 50, color: Colors.black, shadows: [
                       BoxShadow(
                         blurRadius: 5,
                         color: Colors.green.shade900,

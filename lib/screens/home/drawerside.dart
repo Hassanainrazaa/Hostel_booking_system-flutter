@@ -91,7 +91,7 @@ class DrawerSide extends StatelessWidget {
             ),
             listTile(
                 icon: Icons.shop_2_outlined,
-                title: "Booking Cart",
+                title: "Wish List",
                 onTap: () {
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => BookingCart()));

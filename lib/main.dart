@@ -1,7 +1,10 @@
 //import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_vscode/auth/signin.dart';
+import 'package:flutter_application_vscode/provider/Reviewcart_provider.dart';
 import 'package:flutter_application_vscode/provider/product_provider.dart';
+import 'package:flutter_application_vscode/provider/userprovider.dart';
 import 'package:flutter_application_vscode/screens/home/home_screen.dart';
 import 'package:flutter_application_vscode/screens/home/productoverview/productoverview.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,12 +23,24 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<productProvider>(
-        // title: 'Flutter Demo',
-        create: (context) => productProvider(),
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider<productProvider>(
+            // title: 'Flutter Demo',
+            create: (context) => productProvider(),
+          ),
+          ChangeNotifierProvider<UserProvider>(
+            // title: 'Flutter Demo',
+            create: (context) => UserProvider(),
+          ),
+          ChangeNotifierProvider<ReviewcartProvider>(
+            // title: 'Flutter Demo',
+            create: (context) => ReviewcartProvider(),
+          ),
+        ],
         child: MaterialApp(
           theme: ThemeData(),
-          home: HomePage(),
+          home: SignIn(),
           initialRoute: MyApp.id,
           routes: {
             //WelcomePage.id: (context) => WelcomePage(),

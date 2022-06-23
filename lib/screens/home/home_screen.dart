@@ -157,7 +157,7 @@ class _HomePageState extends State<HomePage> {
     //initproductProvider.fatchHerbsProductData();
     //initproductProvider.fatchFreshProductData();
     //initproductProvider.fatchRootProductData();
-    super.initState();
+    //super.initState();
   }
 
   @override
@@ -261,7 +261,8 @@ class _HomePageState extends State<HomePage> {
                 return SingleProduct(
                     productImage: hostelData.ProductImage,
                     productName: hostelData.ProductName,
-                    ProductPrice: hostelData.productprice,
+                    productPrice: hostelData.productprice,
+                    productId: hostelData.productId,
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => productOverview(

@@ -15,14 +15,15 @@ class productProvider with ChangeNotifier {
       (element) {
         //print(element.data());
         productModel = ProductModel(
-          ProductName: element.get("ProductName"),
-          productprice: element.get("ProductPrice"),
-          ProductImage: element.get("ProductImage"),
-          //productImage: element.get("ProductImage"),
-          //productName: element.get("ProductName"),
-          //roductprice: element.get("productPrice")
-          // productprice: element.get("Productprice"),
-        );
+            ProductName: element.get("ProductName"),
+            productprice: element.get("ProductPrice"),
+            ProductImage: element.get("ProductImage"),
+            productId: element.get("ProductId")
+            //productImage: element.get("ProductImage"),
+            //productName: element.get("ProductName"),
+            //roductprice: element.get("productPrice")
+            // productprice: element.get("Productprice"),
+            );
         newList.add(productModel);
       },
     );
